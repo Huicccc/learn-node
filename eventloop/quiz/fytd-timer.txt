@@ -1,1 +1,21 @@
 - In eventloop/timer.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+foo
+baz
+foo
+baz
+2 : bar
+1 : bar
+
+The order of execution will be:
+1. Call `foo(2)`.
+2. Inside `foo`:
+   - Print 'foo'.
+   - Schedule `bar(2)` to be executed asynchronously using `setTimeout`.
+   - Call `baz`, which prints 'baz'.
+3. Call `foo(1)`.
+4. Inside `foo`:
+   - Print 'foo'.
+   - Schedule `bar(1)` to be executed asynchronously using `setTimeout`.
+   - Call `baz`, which prints 'baz'.
+5. Eventually, `bar(2)` is executed, printing '2: bar'.
+6. Eventually, `bar(1)` is executed, printing '1: bar'.

@@ -21,3 +21,7 @@ fs.readFile('./data/test.txt', function(err, data) {
   });
 });
 
+setImmediate(() => {
+  console.log('I was scheduled to run immediately outside');
+});
+
